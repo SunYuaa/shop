@@ -12,7 +12,7 @@ use App\Model\OrderModel;
 class PayController extends Controller
 {
     public $weixin_unifiedorder_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';        // 统一下单接口
-    public $notify_url = 'https://1809sunyujuan.comcto.com/weixin/pay/notify';   //支付回调接口
+    public $notify_url = 'https://1809sunyujuan.comcto.com/pay/weixin/notify';   //支付回调接口
 
     /**
      * 微信支付测试
