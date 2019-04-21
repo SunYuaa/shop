@@ -176,7 +176,7 @@ class PayController extends Controller
             if($sign){  //签名验证成功
                 //TODO 逻辑处理  订单状态更新
                 $pay_time = strtotime($xml->time_end);
-                OrderModel::where(['order_sn'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
+                OrderModel::where(['order_sn'=>$xml->out_trade_no])->update(['pay_amout'=>$xml->cash_fee,'pay_time'=>$pay_time]);
             }else {
                 //TODO 验签失败
                 echo '验签失败，IP:' . $_SERVER['REMOTE_ADDR'];
