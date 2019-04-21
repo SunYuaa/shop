@@ -29,7 +29,7 @@ Route::get('/order/payStatus','OrderController@payStatus');  //查询订单支�
 
 Route::get('/pay/weixin','Weixin\PayController@pay');  //微信支付
 Route::get('/pay/success','Weixin\PayController@paySuccess');  //微信支付成功
-Route::post('/pay/weixin/notify','Weixin\PayController@notify');  //支付成功回调
+Route::get('/pay/weixin/notify','Weixin\PayController@notify');  //支付成功回调
 
 
 
