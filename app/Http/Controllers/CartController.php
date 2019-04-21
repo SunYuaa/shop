@@ -26,6 +26,7 @@ class CartController extends Controller
         $cartList = CartModel::where($where)->get();
         if($cartList){
             $total_price = 0;
+            $goodsList = [];
             foreach($cartList as $k=>$v){
                 $g = GoodsModel::where(['goods_id'=>$v['goods_id']])->first()->toArray();
                 $total_price += $g['goods_price'];
