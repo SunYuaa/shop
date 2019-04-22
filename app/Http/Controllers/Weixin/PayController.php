@@ -41,7 +41,7 @@ class PayController extends Controller
         ];
         $this->values = [];
         $this->values = $order_info;
-        $this->SetSign();
+        $this->SetSign();          //设置签名
         $xml = $this->ToXml();     //将数组转化为XML
         $res = $this->postXmlCurl($xml,$this->weixin_unifiedorder_url,$useCert = false,$second = 30);
         $data = simplexml_load_string($res);
@@ -177,6 +177,7 @@ class PayController extends Controller
                 //TODO 逻辑处理  订单状态更新
                 $pay_time = strtotime($xml->time_end);
                 OrderModel::where(['order_sn'=>$xml->out_trade_no])->update(['pay_amout'=>$xml->cash_fee,'pay_time'=>$pay_time]);
+
             }else {
                 //TODO 验签失败
                 echo '验签失败，IP:' . $_SERVER['REMOTE_ADDR'];

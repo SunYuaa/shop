@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//商品列表
+Route::get('/goods/goodsList','GoodsController@goodsList');   //商品列表
+Route::get('/goods/goodsDetail','GoodsController@goodsDetail');   //商品详情
+
 //购物车
 Route::get('/cart','CartController@index');  //购物车首页
 Route::get('/cart/add/{goods_id?}','CartController@add');  //添加至购物车
