@@ -11,11 +11,11 @@
 
     <button id="btn1">选择图片</button>
 
-    <img src="" alt="" id="imgs0" width="300px">
-    <hr/>
-    <img src="" alt="" id="imgs1" width="300px">
-    <hr/>
-    <img src="" alt="" id="imgs2" width="300px">
+    <img src="" alt="" id="imgs0" width="300">
+    <br>
+    <img src="" alt="" id="imgs1" width="300">
+    <br>
+    <img src="" alt="" id="imgs2" width="300">
 
 
 
@@ -33,7 +33,6 @@
 
         wx.ready(function(){
             $("#btn1").click(function(){
-                alert(111);
                 //图像接口
                 wx.chooseImage({
                     count: 3, // 默认9
@@ -47,16 +46,6 @@
                             var node = "imgs"+i ;
                             $(node).attr('src',v);
 
-                            //上传图片
-                            wx.uploadImage({
-                                localId: v, // 需要上传的图片的本地ID，由chooseImage接口获得
-                                isShowProgressTips: 1, // 默认为1，显示进度提示
-                                success: function (res) {
-                                    var serverId = res.serverId; // 返回图片的服务器端ID
-                                    alert('serverID:'+ serverId);
-                                }
-                            });
-
                         });
 
                         $.ajax({
@@ -68,7 +57,7 @@
                         });
                         console.log(img);
                     }
-                });
+                })
             })
         })
 
