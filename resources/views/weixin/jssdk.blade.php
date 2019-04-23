@@ -43,9 +43,18 @@
                         var img = '';
                         $.each(localIds,function(i,v){
                             img += v+',' ;
-                            var node = "imgs"+i ;
+                            var node = "#imgs"+i ;
                             $(node).attr('src',v);
 
+                            //上传图片
+                            wx.uploadImage({
+                                localId: v, // 需要上传的图片的本地ID，由chooseImage接口获得
+                                isShowProgressTips: 1, // 默认为1，显示进度提示
+                                success: function (res) {
+                                    var serverId = res.serverId; // 返回图片的服务器端ID
+                                    alert('serverID:'+ serverId);
+                                }
+                            });
                         });
 
                         $.ajax({
