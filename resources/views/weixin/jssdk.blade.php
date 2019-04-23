@@ -33,6 +33,7 @@
 
         wx.ready(function(){
             $("#btn1").click(function(){
+                alert(111);
                 //图像接口
                 wx.chooseImage({
                     count: 3, // 默认9
@@ -63,7 +64,6 @@
                             type : 'get',
                             success : function (d){
                                 console.log(d);
-
                             }
                         });
                         console.log(img);
