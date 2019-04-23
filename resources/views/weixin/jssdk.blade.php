@@ -19,7 +19,7 @@
 
 
 
-    <script src="js/jquery/jquery-1.12.4.minjs"></script>
+    <script src="/js/jquery/jquery-1.12.4.min.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <script>
         wx.config({
