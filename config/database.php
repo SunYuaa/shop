@@ -117,7 +117,7 @@ return [
         'client' => env('REDIS_CLIENT', 'phpredis'),
 
         'options' => [
-            'cluster' => env('REDIS_CLUSTER', 'predis'),
+            'cluster' => env('REDIS_CLUSTER', 'phpredis'),
         ],
 
         'default' => [
@@ -125,6 +125,7 @@ return [
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
             'database' => env('REDIS_DB', 0),
+            'prefix' => 'shop_'
         ],
 
         'cache' => [
