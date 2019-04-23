@@ -59,7 +59,7 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
         </style>
     </head>
@@ -80,19 +80,33 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    <table>
+
+                    <table class="title m-b-md">
                         <tr>
-                            <td>{{$goods->goods_id}}&nbsp;&nbsp;</td>
-                            <td>{{$goods->goods_name}}&nbsp;&nbsp;</td>
-                            <td>{{$goods->goods_price}}&nbsp;&nbsp;</td>
-                            <td>{{$goods->goods_store}}&nbsp;&nbsp;</td>
-                            <td>商品浏览次数：{{$goods_view_count}}</td>
+                            <td>{{$data->goods_id}}&nbsp;&nbsp;</td>
+                            <td>{{$data->goods_name}}&nbsp;&nbsp;</td>
+                            <td>{{$data->goods_price}}&nbsp;&nbsp;</td>
+                            <td>{{$data->goods_store}}&nbsp;&nbsp;</td>
+                            <td>商品浏览次数：{{$see_num}} </td>
                         </tr>
                     </table>
-
-                </div>
-
+                    <h3>最热：</h3> <br>
+                    <ol>
+                        @foreach($goods as $k=>$v)
+                            <li>
+                                <h3>{{$v['goods_name']}}</h3>
+                            </li>
+                        @endforeach
+                    </ol>
+                    <hr>
+                    <h3>浏览记录：</h3> <br>
+                    <ol>
+                        @foreach($history as $k=>$v)
+                            <li>
+                                <h3>{{$v['goods_name']}}</h3>
+                            </li>
+                        @endforeach
+                    </ol>
             </div>
         </div>
     </body>
