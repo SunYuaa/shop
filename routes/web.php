@@ -40,7 +40,7 @@ Route::get('/pay/success','Weixin\PayController@paySuccess');  //微信支付成
 
 //微信JSSDk测试
 Route::get('wx/js/jssdk','Weixin\JssdkController@jsTest');  //Jssdk测试
-
+Route::get('/wx/js/getImg','Weixin\JssdkController@getImg');  //Jssdk上传的图片
 
 
 
