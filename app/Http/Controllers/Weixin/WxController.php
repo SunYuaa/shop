@@ -38,9 +38,9 @@ class WxController extends Controller
 
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
-                echo 'ok切勿';
+                echo 'ok';
             }
-            
+
         }
 
 
