@@ -67,4 +67,23 @@ class WxController extends Controller
 
 
     }
+
+    //
+    public function goodsDetail()
+    {
+        $goods_id=$_GET['goods_id'];
+
+        if($goods_id) {
+            $data = GoodsModel::where(['goods_id' => $goods_id])->first();
+            if (!$data) {
+                die('商品不存在');
+            }
+            $data = [
+                'goods' => $data
+            ];
+            return view('weixin.detail',$data);
+        }
+    }
+
+
 }
