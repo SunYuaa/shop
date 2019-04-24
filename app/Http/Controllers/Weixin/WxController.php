@@ -40,7 +40,10 @@ class WxController extends Controller
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
                 $goods = GoodsModel::orderBy('goods_view','desc')->take(3)->get()->toArray();
-                return $msg_xml = "<xml>
+                foreach($goods as $k=>$v){
+                    $goodsUrl = "";
+                    $detailUrl = "/wx/goodsDetail?goods_id=".$v['goods_id'];
+                    echo $msg_xml = "<xml>
                             <ToUserName><![CDATA[$openid]]></ToUserName>
                             <FromUserName><![CDATA[$appid]]></FromUserName>
                             <CreateTime>.time()</CreateTime>
@@ -49,12 +52,14 @@ class WxController extends Controller
                             <Articles>
                                 <item>
                                     <Title><![CDATA[最新商品推荐]]></Title>
-                                    <Description><![CDATA[Aplle系列]]></Description>
-                                    <PicUrl><![CDATA[picurl]]></PicUrl>
-                                    <Url><![CDATA[url]]></Url>
+                                    <Description><![CDATA[$v[goods_name]]></Description>
+                                    <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
+                                    <Url><![CDATA[$detailUrl]]></Url>
                                 </item>
                             </Articles>
                             </xml>";
+                }
+
             }
 
         }
