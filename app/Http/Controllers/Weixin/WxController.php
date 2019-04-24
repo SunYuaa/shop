@@ -50,8 +50,8 @@ class WxController extends Controller
                         <Articles>
                             <item>
                                 <Title><![CDATA[最新商品推荐]]></Title>
-                                <Description><![CDATA[Aplle系列]></Description>
-                                <PicUrl><![CDATA[$detailUrl]]></PicUrl>
+                                <Description><![CDATA[Aplle系列]]></Description>
+                                <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
                                 <Url><![CDATA[$detailUrl]]></Url>
                             </item>
                         </Articles>
