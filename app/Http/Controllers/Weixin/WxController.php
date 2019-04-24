@@ -67,7 +67,6 @@ class WxController extends Controller
     //
     public function goodsDetail()
     {
-        echo 'hha';die;
         if($goods_id) {
             $data = GoodsModel::get();
             if (!$data) {

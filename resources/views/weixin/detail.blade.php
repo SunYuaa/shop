@@ -89,6 +89,7 @@
                             <td>{{$v->goods_price}}&nbsp;&nbsp;</td>
                             <td>{{$v->goods_view}}&nbsp;&nbsp;</td>
                         </tr>
+                        <hr>
                         @endforeach
                     </table>
 
