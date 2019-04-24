@@ -42,7 +42,7 @@ class WxController extends Controller
                 $goods = GoodsModel::orderBy('goods_view','desc')->take(3)->get()->toArray();
                 foreach($goods as $k=>$v){
                     $goodsUrl = "";
-                    $detailUrl = "/wx/goodsDetail?goods_id=".$v['goods_id'];
+                    $detailUrl = "http://1809sunyujuan.comcto.com/wx/goodsDetail?goods_id=".$v['goods_id'];
                     echo $msg_xml = "<xml>
                             <ToUserName><![CDATA[$openid]]></ToUserName>
                             <FromUserName><![CDATA[$appid]]></FromUserName>
