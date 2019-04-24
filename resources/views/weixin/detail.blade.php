@@ -88,8 +88,8 @@
                             <td>{{$v->goods_name}}&nbsp;&nbsp;</td>
                             <td>{{$v->goods_price}}&nbsp;&nbsp;</td>
                             <td>{{$v->goods_view}}&nbsp;&nbsp;</td>
+                            <td><a href="/goods/goodsDetail?goods_id={{$v->goods_id}}">商品详情</a></td>
                         </tr>
-                        <hr>
                         @endforeach
                     </table>
 
