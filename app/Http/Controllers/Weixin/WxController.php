@@ -67,16 +67,16 @@ class WxController extends Controller
     //
     public function goodsDetail()
     {
-        if($goods_id) {
-            $data = GoodsModel::get();
-            if (!$data) {
-                die('商品不存在');
-            }
-            $data = [
-                'goods' => $data
-            ];
-            return view('weixin.detail',$data);
+
+        $data = GoodsModel::get();
+        if (!$data) {
+            die('商品不存在');
         }
+        $data = [
+            'goods' => $data
+        ];
+        return view('weixin.detail',$data);
+
     }
 
 
