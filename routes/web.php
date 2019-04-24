@@ -46,5 +46,6 @@ Route::get('/wx/js/getImg','Weixin\JssdkController@getImg');  //Jssdk上传的�
 Route::get('/wx/valid','Weixin\WxController@valid');
 Route::post('/wx/valid','Weixin\WxController@event');
 Route::get('/wx/goodsDetail','Weixin\WxController@goodsDetail');
+Route::get('/wx/share','Weixin\WxController@share');
 
 
