@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Weixin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\GoodsModel;
+use Illuminate\Support\Str;
 
 class WxController extends Controller
 {
