@@ -39,7 +39,7 @@ class WxController extends Controller
 
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
-                $goodsUrl = "../storage/app/image/1d85bdf0995fcc1fa0519371b7440789.jpeg";
+                $goodsUrl = "http://1809sunyujuan.comcto.com/storage/app/image/1d85bdf0995fcc1fa0519371b7440789.jpeg";
                 $detailUrl = "http://1809sunyujuan.comcto.com/wx/goodsDetail";
                 echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
