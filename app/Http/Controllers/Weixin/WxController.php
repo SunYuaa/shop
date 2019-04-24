@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Weixin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\GoodsModel;
 
 class WxController extends Controller
 {
@@ -38,7 +39,22 @@ class WxController extends Controller
 
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
-                echo 'ok';
+                $goods = GoodsModel::orderBy('goods_view','desc')->take(3)->get()->toArray();
+                return $msg_xml = "<xml>
+                            <ToUserName><![CDATA[$openid]]></ToUserName>
+                            <FromUserName><![CDATA[$appid]]></FromUserName>
+                            <CreateTime>.time()</CreateTime>
+                            <MsgType><![CDATA[news]]></MsgType>
+                            <ArticleCount>1</ArticleCount>
+                            <Articles>
+                                <item>
+                                    <Title><![CDATA[最新商品推荐]]></Title>
+                                    <Description><![CDATA[Aplle系列]]></Description>
+                                    <PicUrl><![CDATA[picurl]]></PicUrl>
+                                    <Url><![CDATA[url]]></Url>
+                                </item>
+                            </Articles>
+                            </xml>";
             }
 
         }
