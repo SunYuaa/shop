@@ -39,24 +39,23 @@ class WxController extends Controller
 
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
-                $goods = GoodsModel::orderBy('goods_view','desc')->first()->toArray();
-                    $goodsUrl = "";
-                    $detailUrl = "http://1809sunyujuan.comcto.com/wx/goodsDetail";
-                    echo $msg_xml = "<xml>
-                            <ToUserName><![CDATA[$openid]]></ToUserName>
-                            <FromUserName><![CDATA[$appid]]></FromUserName>
-                            <CreateTime>.time()</CreateTime>
-                            <MsgType><![CDATA[news]]></MsgType>
-                            <ArticleCount>1</ArticleCount>
-                            <Articles>
-                                <item>
-                                    <Title><![CDATA[最新商品推荐]]></Title>
-                                    <Description><![CDATA[Aplle系列]></Description>
-                                    <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
-                                    <Url><![CDATA[$detailUrl]]></Url>
-                                </item>
-                            </Articles>
-                            </xml>";
+                $goodsUrl = "";
+                $detailUrl = "http://1809sunyujuan.comcto.com/wx/goodsDetail";
+                echo $msg_xml = "<xml>
+                        <ToUserName><![CDATA[$openid]]></ToUserName>
+                        <FromUserName><![CDATA[$appid]]></FromUserName>
+                        <CreateTime>.time()</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>1</ArticleCount>
+                        <Articles>
+                            <item>
+                                <Title><![CDATA[最新商品推荐]]></Title>
+                                <Description><![CDATA[Aplle系列]></Description>
+                                <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
+                                <Url><![CDATA[$detailUrl]]></Url>
+                            </item>
+                        </Articles>
+                        </xml>";
             }
 
         }
@@ -68,6 +67,7 @@ class WxController extends Controller
     //
     public function goodsDetail()
     {
+
         if($goods_id) {
             $data = GoodsModel::get();
             if (!$data) {
