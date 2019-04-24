@@ -39,10 +39,9 @@ class WxController extends Controller
 
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
-                $goods = GoodsModel::orderBy('goods_view','desc')->take(3)->get()->toArray();
-                foreach($goods as $k=>$v){
+                $goods = GoodsModel::orderBy('goods_view','desc')->first()->toArray();
                     $goodsUrl = "";
-                    $detailUrl = "http://1809sunyujuan.comcto.com/wx/goodsDetail?goods_id=".$v['goods_id'];
+                    $detailUrl = "http://1809sunyujuan.comcto.com/wx/goodsDetail";
                     echo $msg_xml = "<xml>
                             <ToUserName><![CDATA[$openid]]></ToUserName>
                             <FromUserName><![CDATA[$appid]]></FromUserName>
@@ -52,14 +51,12 @@ class WxController extends Controller
                             <Articles>
                                 <item>
                                     <Title><![CDATA[最新商品推荐]]></Title>
-                                    <Description><![CDATA[$v[goods_name]]></Description>
+                                    <Description><![CDATA[Aplle系列]></Description>
                                     <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
                                     <Url><![CDATA[$detailUrl]]></Url>
                                 </item>
                             </Articles>
                             </xml>";
-                }
-
             }
 
         }
@@ -71,10 +68,8 @@ class WxController extends Controller
     //
     public function goodsDetail()
     {
-        $goods_id=$_GET['goods_id'];
-
         if($goods_id) {
-            $data = GoodsModel::where(['goods_id' => $goods_id])->first();
+            $data = GoodsModel::get();
             if (!$data) {
                 die('商品不存在');
             }
