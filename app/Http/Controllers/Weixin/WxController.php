@@ -88,7 +88,7 @@ class WxController extends Controller
         ];
         $goods = GoodsModel::get();
         $data = [
-            'shareInfo' =>$info
+            'shareInfo' => $info,
             'goods' => $goods
         ];
         return view('weixin.detail',$data);
