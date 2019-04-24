@@ -38,7 +38,7 @@
                 wx.updateAppMessageShareData({
                     title: '商品', // 分享标题
                     desc: '最热', // 分享描述
-                    link: 'http://1809sunyujuan.comcto.com/wx/share', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                    link: 'http://1809sunyujuan.comcto.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                     imgUrl: 'http://1809sunyujuan.comcto.com/storage/app/image/1d85bdf0995fcc1fa0519371b7440789.jpeg', // 分享图标
                     success: function (res) {
                         alert(res);
