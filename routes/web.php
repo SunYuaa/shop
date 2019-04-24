@@ -43,7 +43,7 @@ Route::get('/wx/js/jssdk','Weixin\JssdkController@jsTest');  //Jssdk测试
 Route::get('/wx/js/getImg','Weixin\JssdkController@getImg');  //Jssdk上传的图
 
 //微信回复图文消息
-Route::get('/wx/event','Weixin\WxController@valid');
-Route::post('/wx/event','Weixin\WxController@event');
+Route::get('/wx/valid','Weixin\WxController@valid');
+Route::post('/wx/valid','Weixin\WxController@event');
 
 

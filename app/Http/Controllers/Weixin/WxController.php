@@ -37,9 +37,10 @@ class WxController extends Controller
         $MsgType = $data->MsgType;      //素材类型
 
         if($MsgType=='text'){
-            if(is_string($data->Content,'最新商品')){
-                echo 'ok';
+            if($data->Content=='最新商品'){
+                echo 'ok切勿';
             }
+            
         }
 
 
