@@ -95,6 +95,11 @@ class WxController extends Controller
         return view('weixin.detail',$data);
     }
 
+    public function getu()
+    {
+        echo $_GET;
+    }
+
 
 
 
