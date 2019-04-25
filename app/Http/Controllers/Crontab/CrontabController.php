@@ -13,6 +13,10 @@ class CrontabController extends Controller
     {
         $time = time();
         $data = OrderModel::where(['is_delete'=>1,'pay_amout'=>0])->get();
-        dd($data);
+        foreach($data as $k=>$v){
+            if($time - $v->add_time > 1800){
+                OrderModel::where(['oid'=>$v->oid])->update(['is_delete'=>2]);
+            }
+        }
     }
 }
