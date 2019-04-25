@@ -44,6 +44,7 @@
 //                alert('分享成功');
                 }
             });
+
             wx.onMenuShareAppMessage({
                 title: '最新商品', // 分享标题
                 desc: 'Apple系列', // 分享描述
