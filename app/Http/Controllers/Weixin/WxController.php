@@ -97,7 +97,7 @@ class WxController extends Controller
 
     public function getu()
     {
-        echo $_GET;echo '<br>';
+//        echo $_GET;echo '<br>';
         $code = $_GET['code'];
         //获取access——token
         $url1 = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_SECRET').'&code='.$code.'&grant_type=authorization_code';
@@ -107,9 +107,10 @@ class WxController extends Controller
         $openid = $response['openid'];
 
         //获取用户信息
-        $url2 = 'http：GET（请使用https协议） https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+        $url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $userInfo = json_decode(file_get_contents($url2),true);
         var_dump($userInfo);
+
     }
 
 
