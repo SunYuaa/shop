@@ -47,4 +47,7 @@ Route::get('/wx/valid','Weixin\WxController@valid');
 Route::post('/wx/valid','Weixin\WxController@event');
 Route::get('/wx/share','Weixin\WxController@share');
 
+//定期删除订单表数据
+Route::get('/crontab/delorder','CrontabController\delOrder');
+
 
