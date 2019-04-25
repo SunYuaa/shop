@@ -40,8 +40,8 @@ class WxController extends Controller
 
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
-                $goodsUrl = "http://1809sunyujuan.comcto.com//image/share.jpeg";
-                $detailUrl = "http://1809sunyujuan.comcto.com/wx/share";
+                $goodsUrl = "https://1809sunyujuan.comcto.com/image/share.jpeg";
+                $detailUrl = "https://1809sunyujuan.comcto.com/wx/share";
                 echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
                         <FromUserName><![CDATA[$appid]]></FromUserName>
@@ -76,6 +76,7 @@ class WxController extends Controller
 //        echo 'ticket:'.$ticket;echo '<br/>';
 //        echo 'timestamp:'.$timestamp;echo '<br/>';
 //        echo 'current_url:'.$current_url;echo '</br>';
+
         $string1 = "jsapi_ticket=$ticket&noncestr=$noncestr&timestamp=$timestamp&url=$current_url";
         $signature = sha1($string1);
 
