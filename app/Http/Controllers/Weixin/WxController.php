@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Weixin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\GoodsModel;
+use App\Model\WxuserModel;
 use Illuminate\Support\Str;
 
 class WxController extends Controller
@@ -97,7 +98,6 @@ class WxController extends Controller
 
     public function getu()
     {
-//        echo $_GET;echo '<br>';
         $code = $_GET['code'];
         //获取access——token
         $url1 = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_SECRET').'&code='.$code.'&grant_type=authorization_code';
@@ -110,10 +110,36 @@ class WxController extends Controller
         $url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $userInfo = json_decode(file_get_contents($url2),true);
         var_dump($userInfo);
-
+        //用户信息入库
+        $openid = $userInfo['openid'];
+        $open = WxuserModel::where(['openid'=>$openid])->first();
+        if($open){
+            echo '欢迎回来~'.$openid;
+        }else{
+            $info = [
+                'openid' => $userInfo['openid'],
+                'nickname' => $userInfo['nickname'],
+                'sex' => $userInfo['sex'],
+                'city' => $userInfo['city'],
+                'province' => $userInfo['province'],
+                'country' => $userInfo['country'],
+                'headimgurl' => $userInfo['headimgurl'],
+            ];
+            WxuserModel::insertGetId($info);
+            echo '欢迎关注``'.$openid;
+        }
     }
-
-
+    //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=https%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+    //array(9) {
+    // ["openid"]=> string(28) "o3RJO1E2RG6hCCXm0Vt6PvUvLdtY"
+    // ["nickname"]=> string(6) "sakura"
+    // ["sex"]=> int(2)
+    // ["language"]=> string(5) "zh_CN"
+    // ["city"]=> string(0) ""
+    // ["province"]=> string(0) ""
+    // ["country"]=> string(6) "中国"
+    // ["headimgurl"]=> string(129) "http://thirdwx.qlogo.cn/mmopen/vi_32/zV0F7K44vHic2CF3hgtSBxRhm1CI903R98079SeKooP5NFicaDNCckeE9GQqsImtVBOcWAmng1dR57C2bYNxQ19g/132"
+    // ["privilege"]=> array(0) { } }
 
 
 }

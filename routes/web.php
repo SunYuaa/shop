@@ -52,8 +52,9 @@ Route::get('/crontab/delorder','Crontab\CrontabController@delOrder');
 
 //微信网页授权
 Route::get('/test/urlencode', function () {
-    echo urlencode($_GET['url']);
+    echo urlencode($_GET['url']);           //https%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu
 });
+
 Route::get('/wxweb/u','Weixin\WxController@getu');  //回调
 
 
