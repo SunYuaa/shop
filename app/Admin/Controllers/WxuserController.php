@@ -81,8 +81,14 @@ class WxuserController extends Controller
     {
         $grid = new Grid(new WxuserModel);
 
-
-
+        $grid->id('ID');
+        $grid->openid('OpenId');
+        $grid->nickname('用户昵称');
+        $grid->sex('性别');
+        $grid->headimgurl('头像');
+        $grid->subscribe_time('添加时间');
+        $grid->sub_status('是否关注');
+        
         return $grid;
     }
 
