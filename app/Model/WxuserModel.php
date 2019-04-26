@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class WxuserModel extends Model
 {
     //
-    protected $table = 's_wxuser';
+    protected $table = 'wx_user';
     public $timestamps = false;
 }
