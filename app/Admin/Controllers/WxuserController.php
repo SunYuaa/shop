@@ -84,11 +84,13 @@ class WxuserController extends Controller
         $grid->id('ID');
         $grid->openid('OpenId');
         $grid->nickname('用户昵称');
-        $grid->sex('性别');
-        $grid->headimgurl('头像');
-        $grid->subscribe_time('添加时间');
-        $grid->sub_status('是否关注');
-        
+        $grid->sex('性别')->using(['2' => '女', '1' => '男']);
+        $grid->headimgurl('头像')->image();
+        $grid->subscribe_time('添加时间')->display(function($subscribe_time){
+            return date('Y-m-d H:i:s',$subscribe_time);
+        });
+        $grid->sub_status('是否关注')->using(['1' => '是', '2' => '否']);
+
         return $grid;
     }
 
