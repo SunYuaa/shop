@@ -13,10 +13,11 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('/goods', GoodsController::class);
     $router->resource('/order', OrderController::class);
-    $router->resource('/wxuser', WxuserController::class); //微信用户列表
-    $router->resource('/insertM', WxController::class); //素材添加
-    $router->resource('/listM', WxController::class); //素材列表
 
+    $router->resource('/wxuser', WxuserController::class); //微信用户列表
+
+    Route::post('/listM','WxController@material');//素材列表
+    Route::get('/insertM','WxController@index');//素材添加
 
 
 

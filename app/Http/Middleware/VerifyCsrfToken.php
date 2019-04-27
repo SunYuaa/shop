@@ -21,6 +21,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         '/pay/weixin/notify',
-        '/wx/valid'
+        '/wx/valid',
+        '/admin/listM'
+
     ];
 }
