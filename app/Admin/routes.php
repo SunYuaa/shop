@@ -19,6 +19,9 @@ Route::group([
     Route::post('/listM','WxController@material');//素材列表
     Route::get('/insertM','WxController@index');//素材添加
 
+    Route::get('/groups/index','WxuserController@index');
+    Route::get('/groups/group','WxuserController@groups');
+
 
 
 });
