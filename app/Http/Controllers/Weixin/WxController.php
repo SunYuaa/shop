@@ -19,6 +19,7 @@ class WxController extends Controller
     //事件
     public function event()
     {
+
         //接受服务器推送
         $content = file_get_contents("php://input");
         //写入日志
@@ -45,7 +46,7 @@ class WxController extends Controller
                 //首次关注 推送图文 用户信息入库
                 if(isset($data->EventKey)){
                     $qrscene = explode('_',$data->EventKey)[1];
-                    $user = $this->getUserInfo($openid);
+                    $user = getUserInfo($openid);
                     $info = [
                         'openid' => $user['openid'],
                         'nickname' => $user['nickname'],
@@ -55,9 +56,10 @@ class WxController extends Controller
                         'country' => $user['country'],
                         'headimgurl' => $user['headimgurl'],
                         'create_time' => $user['subscribe_time'],
-                        'qrscene_id' => $qrscene
+                        'scence_id' => $qrscene
                     ];
                     $id = TmpWxuserModel::insertGetId($info);
+                    var_dump($id);die;
                     if($id){
                         echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
@@ -76,7 +78,6 @@ class WxController extends Controller
                         </xml>";
                     }
                 }
-
             }elseif($event=='SCAN'){
                 //关注后扫码 推送图文
                 echo $msg_xml = "<xml>
@@ -122,12 +123,7 @@ class WxController extends Controller
         }
 
     }
-    //根据openid获取用户信息
-    public function getUserInfo($openid){
-        $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.getWxAccessToken().'&openid='.$openid.'&lang=zh_CN';
-        $res = json_decode(file_get_contents($url),true);
-        return $res;
-    }
+
 
     //分享到朋友圈
     public function share()

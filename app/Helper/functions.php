@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Redis;
     function test(){
     echo 'helper';
 }
+//根据openid获取用户信息
+    function getUserInfo($openid){
+    $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.getWxAccessToken().'&openid='.$openid.'&lang=zh_CN';
+    $res = json_decode(file_get_contents($url),true);
+    return $res;
+}
 
 /**
  * 获取access_token
