@@ -42,14 +42,14 @@ class WxuserController extends Controller
                 'content'=>$text
             ]
         ];
-//        print_r($arr);die;
         $str=json_encode($arr,JSON_UNESCAPED_UNICODE);
 
         $url='https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token='.getWxAccessToken();
         $response=$client->request('POST',$url,[
             'body'=>$str
         ]);
-        if($response->getBody()){
+        $body = $response->getBody();
+        if($response){
             alert('发送成功');
         }else{
             alert('发送失败');
