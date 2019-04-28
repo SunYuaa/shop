@@ -43,12 +43,7 @@
             var checked=$(this).prop('checked');
             $('.box').prop('checked',checked);
         })
-        //取消选
-        $('.box').click(function () {
-            if ($(this).prop('checked')==false){
-                $('#allbox').prop('checked',false);
-            }
-        })
+        
         //点击发送
         $('#btn').click(function () {
             var id=$('.box');

@@ -16,11 +16,14 @@ Route::group([
 
     $router->resource('/wxuser', WxuserController::class); //微信用户列表
 
-    Route::post('/listM','WxController@material');//素材列表
+
+//    Route::post('/listM','WxController@material');//素材列表
     Route::get('/insertM','WxController@index');//素材添加
+    $router->resource('/listM', WxController::class);
 
     Route::get('/groups/index','WxuserController@index');
     Route::get('/groups/group','WxuserController@groups');
+    $router->resource('/groups/group', WxuserController::class);
 
 
 

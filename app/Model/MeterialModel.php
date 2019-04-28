@@ -8,5 +8,5 @@ class MeterialModel extends Model
 {
     //
     protected $table = 'wx_material';
-    public $primaryKey = false;
+    public $timestamps = false;
 }

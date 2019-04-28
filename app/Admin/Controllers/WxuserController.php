@@ -49,7 +49,12 @@ class WxuserController extends Controller
         $response=$client->request('POST',$url,[
             'body'=>$str
         ]);
-        print_r($response->getBody());
+        if($response->getBody()){
+            alert('发送成功');
+        }else{
+            alert('发送失败');
+        }
+
     }
 
 //    protected function grid()
