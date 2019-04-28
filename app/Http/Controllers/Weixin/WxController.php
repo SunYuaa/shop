@@ -33,7 +33,7 @@ class WxController extends Controller
 //        echo "Event:".$data->Event;echo '</br>';                //事件类型
 //        echo "Content:".$data->Content;echo '</br>';                //事件类型
 //        echo "EventKey:".$data->EventKey;echo '</br>';
-
+        var_dump($data);die;
         $appid = $data->ToUserName;     //公众号id
         $openid = $data->FromUserName;  //用户OpenId
         $event = $data->Event;          //事件类型
