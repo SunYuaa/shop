@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\GoodsModel;
 use App\Model\WxuserModel;
 use Illuminate\Support\Str;
+use App\Model\TmpWxuserModel;
 
 class WxController extends Controller
 {
@@ -33,12 +34,71 @@ class WxController extends Controller
 //        echo "Event:".$data->Event;echo '</br>';                //事件类型
 //        echo "Content:".$data->Content;echo '</br>';                //事件类型
 //        echo "EventKey:".$data->EventKey;echo '</br>';
-        var_dump($data);die;
+
         $appid = $data->ToUserName;     //公众号id
         $openid = $data->FromUserName;  //用户OpenId
         $event = $data->Event;          //事件类型
         $MsgType = $data->MsgType;      //素材类型
 
+        if($MsgType=='event'){
+            if($event=='subscribe'){
+                //首次关注 推送图文 用户信息入库
+                if(isset($data->EventKey)){
+                    $qrscene = explode('_',$data->EventKey)[1];
+                    $user = $this->getUserInfo($openid);
+                    $info = [
+                        'openid' => $user['openid'],
+                        'nickname' => $user['nickname'],
+                        'sex' => $user['sex'],
+                        'city' => $user['city'],
+                        'province' => $user['province'],
+                        'country' => $user['country'],
+                        'headimgurl' => $user['headimgurl'],
+                        'create_time' => $user['subscribe_time'],
+                        'qrscene_id' => $qrscene
+                    ];
+                    $id = TmpWxuserModel::insertGetId($info);
+                    if($id){
+                        echo $msg_xml = "<xml>
+                        <ToUserName><![CDATA[$openid]]></ToUserName>
+                        <FromUserName><![CDATA[$appid]]></FromUserName>
+                        <CreateTime>.time()</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>1</ArticleCount>
+                        <Articles>
+                            <item>
+                                <Title><![CDATA[欢迎关注^^]]></Title>
+                                <Description><![CDATA[Apple]]></Description>
+                                <PicUrl><![CDATA[http://1809sunyujuan.comcto.com/image/share.jpeg]]></PicUrl>
+                                <Url><![CDATA[http://1809sunyujuan.comcto.com/wx/share]]></Url>
+                            </item>
+                        </Articles>
+                        </xml>";
+                    }
+                }
+
+            }elseif($event=='SCAN'){
+                //关注后扫码 推送图文
+                echo $msg_xml = "<xml>
+                        <ToUserName><![CDATA[$openid]]></ToUserName>
+                        <FromUserName><![CDATA[$appid]]></FromUserName>
+                        <CreateTime>.time()</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>1</ArticleCount>
+                        <Articles>
+                            <item>
+                                <Title><![CDATA[欢迎回来~]]></Title>
+                                <Description><![CDATA[Apple]]></Description>
+                                <PicUrl><![CDATA[http://1809sunyujuan.comcto.com/image/share.jpeg]]></PicUrl>
+                                <Url><![CDATA[http://1809sunyujuan.comcto.com/wx/share]]></Url>
+                            </item>
+                        </Articles>
+                        </xml>";
+            }
+
+        }
+
+        //发送‘最新商品’推送图文
         if($MsgType=='text'){
             if($data->Content=='最新商品'){
                 $goodsUrl = "http://1809sunyujuan.comcto.com/image/share.jpeg";
@@ -61,9 +121,14 @@ class WxController extends Controller
             }
         }
 
-
-
     }
+    //根据openid获取用户信息
+    public function getUserInfo($openid){
+        $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.getWxAccessToken().'&openid='.$openid.'&lang=zh_CN';
+        $res = json_decode(file_get_contents($url),true);
+        return $res;
+    }
+
     //分享到朋友圈
     public function share()
     {
