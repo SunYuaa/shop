@@ -59,7 +59,7 @@ class WxController extends Controller
                         'scence_id' => $qrscene
                     ];
                     $id = TmpWxuserModel::insertGetId($info);
-                    var_dump($id);die;
+                    
                     if($id){
                         echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
