@@ -54,8 +54,11 @@ Route::get('/crontab/delorder','Crontab\CrontabController@delOrder');
 Route::get('/test/urlencode', function () {
     echo urlencode($_GET['url']);           //https%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu
 });
-
 Route::get('/wxweb/u','Weixin\WxController@getu');  //回调
+
+//生成带参数的二维码
+Route::get('/wx/tmp','Weixin\TmpController@tmp');
+
 
 
 

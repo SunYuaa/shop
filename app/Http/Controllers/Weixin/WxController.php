@@ -96,6 +96,7 @@ class WxController extends Controller
         return view('weixin.detail',$data);
     }
 
+    //微信网页授权
     public function getu()
     {
         $code = $_GET['code'];
