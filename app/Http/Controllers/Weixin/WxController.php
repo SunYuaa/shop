@@ -8,6 +8,7 @@ use App\Model\GoodsModel;
 use App\Model\WxuserModel;
 use Illuminate\Support\Str;
 use App\Model\TmpWxuserModel;
+use GuzzleHttp\Client;
 
 class WxController extends Controller
 {
@@ -124,58 +125,80 @@ class WxController extends Controller
             $goods = GoodsModel::get()->toArray();
             $goods_name = array_column($goods,'goods_name');
             $goods_id = array_column($goods,'goods_id');
-
-                if (in_array($data->Content,$goods_name)) {
-                    $nameInfo = GoodsModel::where(['goods_name' => $data->Content])->first();
-                    //有此商品
-                    echo '有此商品';
-                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/".($nameInfo['goods_id']-1).".jpeg";
-                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $nameInfo['goods_id'];
-                    echo $msg_xml = "<xml>
-                        <ToUserName><![CDATA[$openid]]></ToUserName>
-                        <FromUserName><![CDATA[$appid]]></FromUserName>
-                        <CreateTime>.time()</CreateTime>
-                        <MsgType><![CDATA[news]]></MsgType>
-                        <ArticleCount>1</ArticleCount>
-                        <Articles>
-                            <item>
-                                <Title><![CDATA[$nameInfo[goods_name]]]></Title>
-                                <Description><![CDATA[Apple]]></Description>
-                                <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
-                                <Url><![CDATA[$detailUrl]]></Url>
-                            </item>
-                        </Articles>
-                        </xml>";
-                }else{
-                    $i = rand(0,3);
-                    $g_id = $goods_id[$i];
-                    $g = GoodsModel::where(['goods_id' => $g_id])->first();
-                    echo '无此商品 随机';
-                    //无此商品 随机
-                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/".($g_id - 1).".jpeg";
-                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/$g_id";
-                    echo $msg_xml = "<xml>
-                        <ToUserName><![CDATA[$openid]]></ToUserName>
-                        <FromUserName><![CDATA[$appid]]></FromUserName>
-                        <CreateTime>.time()</CreateTime>
-                        <MsgType><![CDATA[news]]></MsgType>
-                        <ArticleCount>1</ArticleCount>
-                        <Articles>
-                            <item>
-                                <Title><![CDATA[$g[goods_name]]]></Title>
-                                <Description><![CDATA[Apple]]></Description>
-                                <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
-                                <Url><![CDATA[$detailUrl]]></Url>
-                            </item>
-                        </Articles>
-                        </xml>";
-                }
-
-
+            if (in_array($data->Content,$goods_name)) {
+                $nameInfo = GoodsModel::where(['goods_name' => $data->Content])->first();
+                //有此商品
+                echo '有此商品';
+                $goodsUrl = "http://1809sunyujuan.comcto.com/image/".($nameInfo['goods_id']-1).".jpeg";
+                $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $nameInfo['goods_id'];
+                echo $msg_xml = "<xml>
+                    <ToUserName><![CDATA[$openid]]></ToUserName>
+                    <FromUserName><![CDATA[$appid]]></FromUserName>
+                    <CreateTime>.time()</CreateTime>
+                    <MsgType><![CDATA[news]]></MsgType>
+                    <ArticleCount>1</ArticleCount>
+                    <Articles>
+                        <item>
+                            <Title><![CDATA[$nameInfo[goods_name]]]></Title>
+                            <Description><![CDATA[Apple]]></Description>
+                            <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
+                            <Url><![CDATA[$detailUrl]]></Url>
+                        </item>
+                    </Articles>
+                    </xml>";
+            }else{
+                $i = rand(0,3);
+                $g_id = $goods_id[$i];
+                $g = GoodsModel::where(['goods_id' => $g_id])->first();
+                echo '无此商品 随机';
+                //无此商品 随机
+                $goodsUrl = "http://1809sunyujuan.comcto.com/image/".($g_id - 1).".jpeg";
+                $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/$g_id";
+                echo $msg_xml = "<xml>
+                    <ToUserName><![CDATA[$openid]]></ToUserName>
+                    <FromUserName><![CDATA[$appid]]></FromUserName>
+                    <CreateTime>.time()</CreateTime>
+                    <MsgType><![CDATA[news]]></MsgType>
+                    <ArticleCount>1</ArticleCount>
+                    <Articles>
+                        <item>
+                            <Title><![CDATA[$g[goods_name]]]></Title>
+                            <Description><![CDATA[Apple]]></Description>
+                            <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
+                            <Url><![CDATA[$detailUrl]]></Url>
+                        </item>
+                    </Articles>
+                    </xml>";
+            }
 
         }
 
     }
+
+    //获取菜单
+    public function getMenu()
+    {
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . getWxAccessToken();
+        $menu_data = [
+            'button' => [
+                [
+                    "type" => "view",
+                    "name" => "获取福利",
+                    "url" => "http://1809sunyujuan.comcto.com/wxweb/u"
+                ]
+            ]
+        ];
+        $json_arr = json_encode($menu_data, JSON_UNESCAPED_UNICODE);
+        $client = new Client();
+        $response = $client->request('post',$url,[
+            'body' => $json_arr
+        ]);
+        $res = $response->getBody();
+        $arr = json_decode($res,true);
+        dump($arr);
+
+    }
+
 
     //分享到朋友圈
     public function share()

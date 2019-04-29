@@ -59,6 +59,8 @@ Route::get('/wxweb/u','Weixin\WxController@getu');  //回调
 //生成带参数的二维码
 Route::get('/wx/tmp','Weixin\TmpController@tmp');
 
+//生成菜单
+Route::get('/wx/getMenu','Weixin\WxController@getMenu');
 
 
 

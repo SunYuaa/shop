@@ -87,6 +87,7 @@ class GoodsController extends Controller
         $grid->goods_store('库存');
         $grid->is_delete('是否删除');
         $grid->goods_view('浏览量');
+        $grid->goods_img('商品图片')->image();
 
         return $grid;
     }
@@ -125,6 +126,8 @@ class GoodsController extends Controller
         $form->number('goods_store', 'Goods store');
         $form->switch('is_delete', 'Is delete')->default(1);
         $form->number('goods_view', 'Goods view');
+        $form->image('goods_img');
+        
 
         return $form;
     }
