@@ -122,15 +122,15 @@ class WxController extends Controller
 
             //搜索商品名称
             $goods = GoodsModel::get()->toArray();
+            $goods_name = array_column($goods,'goods_name');
             $goods_id = array_column($goods,'goods_id');
-            $i = rand(0,3);
-            $g_id = $goods_id[$i];
-            $g = GoodsModel::where(['goods_id' => $g_id])->first();
-            foreach($goods as $k=>$v) {
-                if ($data->Content == $v['goods_name']) {
+
+                if (in_array($data->Content,$goods_name)) {
+                    $nameInfo = GoodsModel::where(['goods_name' => $data->Content])->first();
                     //有此商品
-                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/$k.jpeg";
-                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $v['goods_id'];
+                    echo '有此商品';
+                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/".($nameInfo['goods_id']-1).".jpeg";
+                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $nameInfo['goods_id'];
                     echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
                         <FromUserName><![CDATA[$appid]]></FromUserName>
@@ -139,17 +139,21 @@ class WxController extends Controller
                         <ArticleCount>1</ArticleCount>
                         <Articles>
                             <item>
-                                <Title><![CDATA[$v[goods_name]]></Title>
+                                <Title><![CDATA[$nameInfo[goods_name]]></Title>
                                 <Description><![CDATA[Apple]]></Description>
                                 <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
                                 <Url><![CDATA[$detailUrl]]></Url>
                             </item>
                         </Articles>
                         </xml>";
-                } else {
+                }else{
+                    $i = rand(0,3);
+                    $g_id = $goods_id[$i];
+                    $g = GoodsModel::where(['goods_id' => $g_id])->first();
+                    echo '无此商品 随机';
                     //无此商品 随机
-                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/" . ($g_id - 1) . ".jpeg";
-                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $g_id;
+                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/".($g_id - 1).".jpeg";
+                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/$g_id";
                     echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
                         <FromUserName><![CDATA[$appid]]></FromUserName>
@@ -166,7 +170,7 @@ class WxController extends Controller
                         </Articles>
                         </xml>";
                 }
-            }
+
 
 
         }
