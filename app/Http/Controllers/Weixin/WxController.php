@@ -199,43 +199,11 @@ class WxController extends Controller
 
     }
 
-
-    //分享到朋友圈
-    public function share()
-    {
-        //计算签名
-        $noncestr = Str::random(10);
-        $ticket = getJsapiTicket();
-        $timestamp = time();
-        $current_url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];  //http://www.shop.com.wx/js/jssdk
-//        echo 'noncestr:'.$noncestr;echo '<br/>';
-//        echo 'ticket:'.$ticket;echo '<br/>';
-//        echo 'timestamp:'.$timestamp;echo '<br/>';
-//        echo 'current_url:'.$current_url;echo '</br>';
-
-        $string1 = "jsapi_ticket=$ticket&noncestr=$noncestr&timestamp=$timestamp&url=$current_url";
-        $signature = sha1($string1);
-
-
-        $info = [
-            'appId' => env('WX_APPID'),             //公众号id
-            'timestamp' => $timestamp,              //时间戳
-            'nonceStr' => $noncestr,                //随机字符串
-            'signature' => $signature,              //签名
-            'jsApiList' => ['chooseImage','uploadImage','updateAppMessageShareData','onMenuShareAppMessage']          //使用的JS接口
-        ];
-        $goods = GoodsModel::get();
-        $data = [
-            'shareInfo' => $info,
-            'goods' => $goods
-        ];
-        return view('weixin.detail',$data);
-    }
-
     //微信网页授权
     public function getu()
     {
         $code = $_GET['code'];
+
         //获取access——token
         $url1 = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_SECRET').'&code='.$code.'&grant_type=authorization_code';
         $response = json_decode(file_get_contents($url1),true);
@@ -278,6 +246,39 @@ class WxController extends Controller
             echo '欢迎关注``'.$openid;
         }
     }
+
+    //分享到朋友圈
+    public function share()
+    {
+        //计算签名
+        $noncestr = Str::random(10);
+        $ticket = getJsapiTicket();
+        $timestamp = time();
+        $current_url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];  //http://www.shop.com.wx/js/jssdk
+//        echo 'noncestr:'.$noncestr;echo '<br/>';
+//        echo 'ticket:'.$ticket;echo '<br/>';
+//        echo 'timestamp:'.$timestamp;echo '<br/>';
+//        echo 'current_url:'.$current_url;echo '</br>';
+
+        $string1 = "jsapi_ticket=$ticket&noncestr=$noncestr&timestamp=$timestamp&url=$current_url";
+        $signature = sha1($string1);
+
+
+        $info = [
+            'appId' => env('WX_APPID'),             //公众号id
+            'timestamp' => $timestamp,              //时间戳
+            'nonceStr' => $noncestr,                //随机字符串
+            'signature' => $signature,              //签名
+            'jsApiList' => ['chooseImage','uploadImage','updateAppMessageShareData','onMenuShareAppMessage']          //使用的JS接口
+        ];
+        $goods = GoodsModel::get();
+        $data = [
+            'shareInfo' => $info,
+            'goods' => $goods
+        ];
+        return view('weixin.detail',$data);
+    }
+
 
 
 
