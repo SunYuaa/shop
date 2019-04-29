@@ -207,7 +207,9 @@ class WxController extends Controller
     //签到
     public function sign()
     {
-        $openid = $_GET['openid'];
+        $content = file_get_contents("php://input");
+        $data = simplexml_load_string($content);
+        $openid = $data->FromUserName;
         echo $openid;die;
         $user = WxuserModel::get()->toArray();
 
