@@ -184,7 +184,7 @@ class WxController extends Controller
                 [
                     "type" => "view",
                     "name" => "获取福利",
-                    "url" => "http://1809sunyujuan.comcto.com/wxweb/u"
+                    "url" => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
                 ]
             ]
         ];
@@ -247,7 +247,7 @@ class WxController extends Controller
         $url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $userInfo = json_decode(file_get_contents($url2),true);
 //        var_dump($userInfo);
-        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=https%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
         //array(9) {
         // ["openid"]=> string(28) "o3RJO1E2RG6hCCXm0Vt6PvUvLdtY"
         // ["nickname"]=> string(6) "sakura"
