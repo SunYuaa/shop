@@ -80,33 +80,36 @@
             @endif
 
             <div class="content">
+                <div class="title m-b-md">
+                    <img src="{{$tmp_url}}" alt="暂无">
+                </div>
 
-                    <table class="title m-b-md">
-                        <tr>
-                            <td>{{$data->goods_id}}&nbsp;&nbsp;</td>
-                            <td>{{$data->goods_name}}&nbsp;&nbsp;</td>
-                            <td>{{$data->goods_price}}&nbsp;&nbsp;</td>
-                            <td>{{$data->goods_store}}&nbsp;&nbsp;</td>
-                            <td>商品浏览次数：{{$see_num}} </td>
-                        </tr>
-                    </table>
-                    <h3>最热：</h3> <br>
-                    <ol>
-                        @foreach($goods as $k=>$v)
-                            <li>
-                                <h3>{{$v['goods_name']}}</h3>
-                            </li>
-                        @endforeach
-                    </ol>
-                    <hr>
-                    <h3>浏览记录：</h3> <br>
-                    <ol>
-                        @foreach($history as $k=>$v)
-                            <li>
-                                <h3>{{$v['goods_name']}}</h3>
-                            </li>
-                        @endforeach
-                    </ol>
+                <table class="title m-b-md">
+                    <tr>
+                        <td>{{$data->goods_id}}&nbsp;&nbsp;</td>
+                        <td>{{$data->goods_name}}&nbsp;&nbsp;</td>
+                        <td>{{$data->goods_price}}&nbsp;&nbsp;</td>
+                        <td>{{$data->goods_store}}&nbsp;&nbsp;</td>
+                        <td>商品浏览次数：{{$see_num}} </td>
+                    </tr>
+                </table>
+                <h3>最热：</h3> <br>
+                <ol>
+                    @foreach($goods as $k=>$v)
+                        <li>
+                            <h3>{{$v['goods_name']}}</h3>
+                        </li>
+                    @endforeach
+                </ol>
+                <hr>
+                <h3>浏览记录：</h3> <br>
+                <ol>
+                    @foreach($history as $k=>$v)
+                        <li>
+                            <h3>{{$v['goods_name']}}</h3>
+                        </li>
+                    @endforeach
+                </ol>
             </div>
         </div>
     </body>

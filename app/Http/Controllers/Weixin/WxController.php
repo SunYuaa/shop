@@ -19,7 +19,6 @@ class WxController extends Controller
     //事件
     public function event()
     {
-
         //接受服务器推送
         $content = file_get_contents("php://input");
         //写入日志
@@ -59,7 +58,7 @@ class WxController extends Controller
                         'scence_id' => $qrscene
                     ];
                     $id = TmpWxuserModel::insertGetId($info);
-                    
+
                     if($id){
                         echo $msg_xml = "<xml>
                         <ToUserName><![CDATA[$openid]]></ToUserName>
@@ -123,7 +122,6 @@ class WxController extends Controller
         }
 
     }
-
 
     //分享到朋友圈
     public function share()

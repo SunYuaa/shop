@@ -79,14 +79,17 @@ class GoodsController extends Controller
             $goods=$this->getSeeSort();
             //获取浏览记录
             $history=$this->history();
+
+            //二维码
+            $tmp_url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.tmp();
+
             $data=[
                 'data'=>$data,
                 'see_num'=>$see_num,
                 'goods'=>$goods,
-                'history'=>$history
+                'history'=>$history,
+                'tmp_url' => $tmp_url
             ];
-        }else{
-            die('参数错误');
         }
         return view('goods.goodsDetail',$data);
     }

@@ -1,4 +1,6 @@
 <?php
+
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Redis;
 
     function test(){
@@ -9,8 +11,30 @@ use Illuminate\Support\Facades\Redis;
     $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.getWxAccessToken().'&openid='.$openid.'&lang=zh_CN';
     $res = json_decode(file_get_contents($url),true);
     return $res;
-}
+    }
+//生成带参数的二维码
+    function tmp()
+    {
+    $client = new Client();
+    $url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token='.getWxAccessToken();
+    $data = [
+        "expire_seconds" => 604800,
+        "action_name" => "QR_SCENE",
+        "action_info" => [
+            "scene" => [
+                "scene_id" => 123
+            ]
+        ]
+    ];
+    $json = json_encode($data,JSON_UNESCAPED_UNICODE);
+    $response =$client->request('post',$url,[
+        'body' => $json
+    ]);
+    $res = json_decode($response->getBody(),true);
 
+    $ticket = $res['ticket'];
+    return $ticket;
+}
 /**
  * 获取access_token
  * @return bool
