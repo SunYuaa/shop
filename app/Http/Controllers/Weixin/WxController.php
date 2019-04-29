@@ -209,6 +209,7 @@ class WxController extends Controller
     {
         $content = file_get_contents("php://input");
         $data = simplexml_load_string($content);
+        var_dump($data);die;
         $openid = $data->FromUserName;
         echo $openid;die;
         $user = WxuserModel::get()->toArray();
