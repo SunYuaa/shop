@@ -185,6 +185,11 @@ class WxController extends Controller
                     "type" => "view",
                     "name" => "获取福利",
                     "url" => "http://1809sunyujuan.comcto.com/wx/redirect"
+                ],
+                [
+                    "type" => "view",
+                    "name" => "点此签到",
+                    "url" => "http://1809sunyujuan.comcto.com/"
                 ]
             ]
         ];
@@ -201,7 +206,7 @@ class WxController extends Controller
     //
     public function redirect()
     {
-        echo '11111';
+        echo '正在拉起授权中';
         header("Refresh:3;url=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
     }
 
