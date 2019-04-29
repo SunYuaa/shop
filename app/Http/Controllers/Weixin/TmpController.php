@@ -34,18 +34,4 @@ class TmpController extends Controller
         var_dump($url2);
     }
 
-    //扫码
-    public function event()
-    {
-        echo '11111';die;
-        //接受服务器推送
-        $content = file_get_contents("php://input");
-        //写入日志
-        $time = date("Y-m-d H:i:s");
-        $str = $time . $content . "\n";
-        file_put_contents("logs/wx_tmp.log", $str, FILE_APPEND);
-
-        $data = simplexml_load_string($content);
-        var_dump($data);
-    }
 }

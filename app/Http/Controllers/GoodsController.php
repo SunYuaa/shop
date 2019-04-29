@@ -81,17 +81,17 @@ class GoodsController extends Controller
             $history=$this->history();
 
             //二维码
-            $tmp_url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.tmp();
-
+            $server=['server'=>$_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI']];
+            $url_code = "http://1809sunyujuan.comcto.com//goods/goodsDetail/".$goods_id;
             $data=[
                 'data'=>$data,
                 'see_num'=>$see_num,
                 'goods'=>$goods,
                 'history'=>$history,
-                'tmp_url' => $tmp_url
+                'url_code'=>$url_code
             ];
         }
-        return view('goods.goodsDetail',$data);
+        return view('goods.goodsDetail',$data,$server);
     }
 
     //获取商品浏览量排行

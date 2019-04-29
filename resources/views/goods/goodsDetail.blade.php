@@ -109,10 +109,18 @@
                     @endforeach
                 </ol>
 
-                <div class="title m-b-md" width="100">
-                    <img src="{{$tmp_url}}" alt="暂无">
+                <div id='qrcode' class="title m-b-md" width="100">
+
                 </div>
+
             </div>
         </div>
     </body>
 </html>
+<script src="/js/jquery/jquery-1.12.4.min.js"></script>
+<script src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js "></script>
+<script src="/js/weixin/qrcode.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById('qrcode'),"{{$url_code}}");
+</script>
+

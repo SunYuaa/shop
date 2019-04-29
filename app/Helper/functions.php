@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Redis;
     $res = json_decode(file_get_contents($url),true);
     return $res;
     }
+
 //生成带参数的二维码
     function tmp()
     {
@@ -33,8 +34,10 @@ use Illuminate\Support\Facades\Redis;
     $res = json_decode($response->getBody(),true);
 
     $ticket = $res['ticket'];
-    return $ticket;
+    $url2 = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$ticket;
+    return $url2;
 }
+
 /**
  * 获取access_token
  * @return bool
