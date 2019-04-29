@@ -184,7 +184,7 @@ class WxController extends Controller
                 [
                     "type" => "view",
                     "name" => "获取福利",
-                    "url" => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fgoods%2FgoodsDetail%2F3&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+                    "url" => "http://1809sunyujuan.comcto.com/wx/redirect"
                 ]
             ]
         ];
@@ -197,6 +197,12 @@ class WxController extends Controller
         $arr = json_decode($res,true);
         dump($arr);
 
+    }
+    //
+    public function redirect()
+    {
+        alert('登录成功');
+        header("Refresh:3;url=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
     }
 
     //微信网页授权
