@@ -201,10 +201,10 @@ class WxController extends Controller
     //
     public function redirect()
     {
-        alert('登录成功');
-        header('Refresh:3;url=http://1809sunyujuan.comcto.com/wxweb/u');
+        alert('登录成功');die;
+//        header('Refresh:3;url=http://1809sunyujuan.comcto.com/wxweb/u');
 
-//        header("Refresh:3;url=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+        header("Refresh:3;url=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
     }
 
     //微信网页授权
