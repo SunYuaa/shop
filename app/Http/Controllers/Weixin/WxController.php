@@ -190,7 +190,7 @@ class WxController extends Controller
                 [
                     "type" => "view",
                     "name" => "点此签到",
-                    "url" => "http://1809sunyujuan.comcto.com/"
+                    "url" => "http://1809sunyujuan.comcto.com/wx/sign"
                 ]
             ]
         ];
@@ -202,6 +202,17 @@ class WxController extends Controller
         $res = $response->getBody();
         $arr = json_decode($res,true);
         dump($arr);
+
+    }
+    //签到
+    public function sign()
+    {
+        $openid = $_GET['openid'];
+        echo $openid;die;
+        $user = WxuserModel::get()->toArray();
+
+        $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.getWxAccessToken().'&openid='.$openid.'&lang=zh_CN';
+        $userInfo = json_decode(file_get_contents($url2),true);
 
     }
     //

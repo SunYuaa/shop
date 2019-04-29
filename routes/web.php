@@ -62,6 +62,7 @@ Route::get('/wx/tmp','Weixin\TmpController@tmp');
 //生成菜单
 Route::get('/wx/getMenu','Weixin\WxController@getMenu');
 Route::get('/wx/redirect','Weixin\WxController@redirect');
+Route::get('/wx/sign','Weixin\WxController@sign');
 
 
 
