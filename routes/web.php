@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //商品列表
 Route::get('/goods/goodsList','GoodsController@goodsList');   //商品列表
-Route::get('/goods/goodsDetail','GoodsController@goodsDetail');   //商品详情 浏览次数
+Route::get('/goods/goodsDetail/{id}','GoodsController@goodsDetail');   //商品详情 浏览次数
 Route::get('/goods/goodsSort','GoodsController@getSort');   //浏览次数排序
 Route::get('/goods/goodsHistory','GoodsController@viewHistory');   //浏览历史记录
 

@@ -57,8 +57,8 @@ class GoodsController extends Controller
     }
 
     //商品详情页
-    public function goodsDetail(){
-        $goods_id=$_GET['goods_id'];
+    public function goodsDetail($id){
+        $goods_id=$id;
 
         if($goods_id){
             $data=GoodsModel::where(['goods_id'=>$goods_id])->first();
@@ -82,7 +82,7 @@ class GoodsController extends Controller
 
             //二维码
             $server=['server'=>$_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] .$_SERVER['REQUEST_URI']];
-            $url_code = "http://1809sunyujuan.comcto.com/goods/goodsDetail?goods_id = $goods_id";
+            $url_code = "http://1809sunyujuan.comcto.com/goods/goodsDetail/$goods_id";
             $data=[
                 'data'=>$data,
                 'see_num'=>$see_num,

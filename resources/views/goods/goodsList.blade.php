@@ -88,7 +88,7 @@
                             <td>{{$v->goods_name}}&nbsp;&nbsp;</td>
                             <td>{{$v->goods_price}}&nbsp;&nbsp;</td>
                             <td>{{$v->goods_view}}&nbsp;&nbsp;</td>
-                            <td><a href="/goods/goodsDetail?goods_id={{$v->goods_id}}">商品详情</a></td>
+                            <td><a href="/goods/goodsDetail/{{$v->goods_id}}">商品详情</a></td>
                             <td><a href="/cart/add?goods_id={{$v->goods_id}}">加入购物车</a></td>
                         </tr>
                         @endforeach
