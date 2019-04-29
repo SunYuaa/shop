@@ -202,8 +202,6 @@ class WxController extends Controller
     public function redirect()
     {
         echo '11111';
-//        header('Refresh:3;url=http://1809sunyujuan.comcto.com/wxweb/u');
-
         header("Refresh:3;url=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
     }
 
@@ -215,7 +213,7 @@ class WxController extends Controller
         //获取access——token
         $url1 = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_SECRET').'&code='.$code.'&grant_type=authorization_code';
         $response = json_decode(file_get_contents($url1),true);
-
+        var_dump($response);die;
         $access_token = $response['access_token'];
         $openid = $response['openid'];
 
@@ -239,6 +237,7 @@ class WxController extends Controller
         $openid = $userInfo['openid'];
         $open = WxuserModel::where(['openid'=>$openid])->first();
         if($open){
+            header('Refresh:3;url=/goods/goodsDetail/3');
             echo '欢迎回来~'.$openid;
         }else{
             $info = [
