@@ -80,9 +80,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    <img src="{{$tmp_url}}" alt="暂无">
-                </div>
+
 
                 <table class="title m-b-md">
                     <tr>
@@ -110,6 +108,10 @@
                         </li>
                     @endforeach
                 </ol>
+
+                <div class="title m-b-md" width="100">
+                    <img src="{{$tmp_url}}" alt="暂无">
+                </div>
             </div>
         </div>
     </body>
