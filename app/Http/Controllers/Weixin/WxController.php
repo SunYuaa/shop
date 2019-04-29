@@ -139,7 +139,7 @@ class WxController extends Controller
                         <ArticleCount>1</ArticleCount>
                         <Articles>
                             <item>
-                                <Title><![CDATA[$nameInfo[goods_name]]></Title>
+                                <Title><![CDATA[$nameInfo[goods_name]]]></Title>
                                 <Description><![CDATA[Apple]]></Description>
                                 <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
                                 <Url><![CDATA[$detailUrl]]></Url>
@@ -162,7 +162,7 @@ class WxController extends Controller
                         <ArticleCount>1</ArticleCount>
                         <Articles>
                             <item>
-                                <Title><![CDATA[$g[goods_name]]></Title>
+                                <Title><![CDATA[$g[goods_name]]]></Title>
                                 <Description><![CDATA[Apple]]></Description>
                                 <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
                                 <Url><![CDATA[$detailUrl]]></Url>
