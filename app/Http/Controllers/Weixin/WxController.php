@@ -184,7 +184,7 @@ class WxController extends Controller
                 [
                     "type" => "view",
                     "name" => "获取福利",
-                    "url" => "http://1809sunyujuan.comcto.com/wxweb/u"
+                    "url" => "http://1809sunyujuan.comcto.com/wx/redirect"
                 ]
             ]
         ];
