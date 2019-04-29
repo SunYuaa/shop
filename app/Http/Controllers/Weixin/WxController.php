@@ -119,6 +119,56 @@ class WxController extends Controller
                         </Articles>
                         </xml>";
             }
+
+            //搜索商品名称
+            $goods = GoodsModel::get()->toArray();
+            $goods_id = array_column($goods,'goods_id');
+            $i = rand(0,3);
+            $g_id = $goods_id[$i];
+            $g = GoodsModel::where(['goods_id' => $g_id])->first();
+            foreach($goods as $k=>$v) {
+                if ($data->Content == $v['goods_name']) {
+                    //有此商品
+                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/$k.jpeg";
+                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $v['goods_id'];
+                    echo $msg_xml = "<xml>
+                        <ToUserName><![CDATA[$openid]]></ToUserName>
+                        <FromUserName><![CDATA[$appid]]></FromUserName>
+                        <CreateTime>.time()</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>1</ArticleCount>
+                        <Articles>
+                            <item>
+                                <Title><![CDATA[$v[goods_name]]></Title>
+                                <Description><![CDATA[Apple]]></Description>
+                                <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
+                                <Url><![CDATA[$detailUrl]]></Url>
+                            </item>
+                        </Articles>
+                        </xml>";
+                } else {
+                    //无此商品 随机
+                    $goodsUrl = "http://1809sunyujuan.comcto.com/image/" . ($g_id - 1) . ".jpeg";
+                    $detailUrl = "http://1809sunyujuan.comcto.com/goods/goodsDetail/" . $g_id;
+                    echo $msg_xml = "<xml>
+                        <ToUserName><![CDATA[$openid]]></ToUserName>
+                        <FromUserName><![CDATA[$appid]]></FromUserName>
+                        <CreateTime>.time()</CreateTime>
+                        <MsgType><![CDATA[news]]></MsgType>
+                        <ArticleCount>1</ArticleCount>
+                        <Articles>
+                            <item>
+                                <Title><![CDATA[$g[goods_name]]></Title>
+                                <Description><![CDATA[Apple]]></Description>
+                                <PicUrl><![CDATA[$goodsUrl]]></PicUrl>
+                                <Url><![CDATA[$detailUrl]]></Url>
+                            </item>
+                        </Articles>
+                        </xml>";
+                }
+            }
+
+
         }
 
     }
