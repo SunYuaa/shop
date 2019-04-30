@@ -99,20 +99,20 @@ class ExamController extends Controller
     }
     //群发消息
     public function group(){
-        $client=new Client();
-        $openid=$_GET['openid'];
         $text=$_GET['text'];
         //Redis 缓存
         $key = 'exam_text';
         $exam_text = Redis::get($key);
         if($exam_text){
-            return $text = $exam_text;
+            $text = $exam_text;
         }else{
             Redis::set($key,$text);
             Redis::expire($key,3600);
-            return $text;
+            echo $text;
         }
-
+        
+        $client=new Client();
+        $openid=$_GET['openid'];
         $openid=explode(',',$openid);
         $arr=[
             'touser' => $openid,
