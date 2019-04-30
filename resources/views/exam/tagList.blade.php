@@ -47,7 +47,6 @@
                 }
             })
             openid=openid.substr(0,openid.length-1);
-            console.log(openid);
             if(openid==''){
                 alert('请选择要发送的人');
                 return false;

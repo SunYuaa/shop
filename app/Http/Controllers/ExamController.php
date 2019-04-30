@@ -6,6 +6,7 @@ use App\Model\WxuserModel;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use phpDocumentor\Reflection\File;
+use Illuminate\Support\Facades\Redis;
 
 class ExamController extends Controller
 {
@@ -101,6 +102,16 @@ class ExamController extends Controller
         $client=new Client();
         $openid=$_GET['openid'];
         $text=$_GET['text'];
+        //Redis 缓存
+        $key = 'exam_text';
+        $exam_text = Redis::get($key);
+        if($exam_text){
+            return $text = $exam_text;
+        }else{
+            Redis::set($key,$text);
+            Redis::expire($key,3600);
+            return $text;
+        }
 
         $openid=explode(',',$openid);
         $arr=[
@@ -116,7 +127,9 @@ class ExamController extends Controller
         $response=$client->request('POST',$url,[
             'body'=>$str
         ]);
-        $body = response->getBody();
+
+        $body = $response->getBody();
+
         if($body){
             alert('发送成功');
         }else{
