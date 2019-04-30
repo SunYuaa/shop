@@ -101,7 +101,7 @@ class ExamController extends Controller
         $client=new Client();
         $openid=$_GET['openid'];
         $text=$_GET['text'];
-        
+
         $openid=explode(',',$openid);
         $arr=[
             'touser' => $openid,

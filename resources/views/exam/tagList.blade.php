@@ -18,7 +18,7 @@
     <tr>
         <td><input type="checkbox" class="box"></td>
         <td>apple</td>
-        <td>{{$v}}</td>
+        <td class='openid'>{{$v}}</td>
     </tr>
     @endforeach
 </table>
@@ -43,10 +43,11 @@
             var openid='';
             id.each(function (res) {
                 if ($(this).prop('checked')==true){
-                    openid+=$(this).parent('td').attr('openid')+',';
+                    openid+=$(this).parent('td').next().next().text()+',';
                 }
             })
             openid=openid.substr(0,openid.length-1);
+            console.log(openid);
             if(openid==''){
                 alert('请选择要发送的人');
                 return false;
