@@ -97,10 +97,11 @@ class ExamController extends Controller
         return view('exam.tagList',$data);
     }
     //群发消息
-    public function groups(){
+    public function group(){
         $client=new Client();
         $openid=$_GET['openid'];
         $text=$_GET['text'];
+        
         $openid=explode(',',$openid);
         $arr=[
             'touser' => $openid,
