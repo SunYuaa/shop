@@ -51,10 +51,6 @@
                 alert('请选择要发送的人');
                 return false;
             }
-            if(text==''){
-                alert('请输入发送的内容');
-                return false;
-            }
             $.ajax({
                 url:'/exam/group?openid='+openid+'&text='+text,
                 type:'get'

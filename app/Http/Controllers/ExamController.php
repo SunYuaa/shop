@@ -91,7 +91,7 @@ class ExamController extends Controller
             'body' => json_encode($json_arr,JSON_UNESCAPED_UNICODE)
         ]);
         $info = json_decode($response->getBody(),true);
-
+        dump($info);die;
         $data = [
             'info' => $info['data']['openid']
         ];
@@ -99,6 +99,7 @@ class ExamController extends Controller
     }
     //群发消息
     public function group(){
+        $openid=$_GET['openid'];
         $text=$_GET['text'];
         //Redis 缓存
         $key = 'exam_text';
@@ -112,7 +113,6 @@ class ExamController extends Controller
         }
 
         $client=new Client();
-        $openid=$_GET['openid'];
         $openid=explode(',',$openid);
         $arr=[
             'touser' => $openid,
