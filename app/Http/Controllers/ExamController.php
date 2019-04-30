@@ -110,7 +110,7 @@ class ExamController extends Controller
             Redis::expire($key,3600);
             echo $text;
         }
-        
+
         $client=new Client();
         $openid=$_GET['openid'];
         $openid=explode(',',$openid);
@@ -131,9 +131,9 @@ class ExamController extends Controller
         $body = $response->getBody();
 
         if($body){
-            alert('发送成功');
+            echo '发送成功';
         }else{
-            alert('发送失败');
+            echo '发送失败';
         }
 
     }
