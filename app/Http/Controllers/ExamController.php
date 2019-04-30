@@ -131,9 +131,9 @@ class ExamController extends Controller
         $body = $response->getBody();
 
         if($body){
-            echo '发送成功';
+            echo 'ok';
         }else{
-            echo '发送失败';
+            echo 'no';
         }
 
     }
