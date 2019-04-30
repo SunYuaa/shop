@@ -65,5 +65,8 @@ Route::get('/wx/redirect','Weixin\WxController@redirect');
 Route::get('/wx/sign','Weixin\WxController@sign');
 
 //exam
+Route::get('/exam/web','ExamController@web');//微信网络授权
+Route::get('/exam/createTag','ExamController@createTag');//创建标签
+Route::get('/exam/getTag','ExamController@getTag');//获取标签
+Route::get('/exam/tagList','ExamController@tagList');//粉丝标签列表
 
-Route::get('/exam/web','ExamController@web');
