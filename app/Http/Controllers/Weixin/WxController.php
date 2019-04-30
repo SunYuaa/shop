@@ -207,17 +207,10 @@ class WxController extends Controller
     //签到
     public function sign()
     {
-        $content = file_get_contents("php://input");
-        $data = simplexml_load_string($content);
-        var_dump($data);die;
-        $openid = $data->FromUserName;
-        echo $openid;die;
-        $user = WxuserModel::get()->toArray();
-
-        $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.getWxAccessToken().'&openid='.$openid.'&lang=zh_CN';
-        $userInfo = json_decode(file_get_contents($url2),true);
-
+        echo '获取签到授权中';
+        header("Refresh:3;url=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx80fc97799f2a0754&redirect_uri=http%3A%2F%2F1809sunyujuan.comcto.com%2Fwxweb%2Fu&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
     }
+
     //
     public function redirect()
     {

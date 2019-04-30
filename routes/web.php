@@ -64,5 +64,6 @@ Route::get('/wx/getMenu','Weixin\WxController@getMenu');
 Route::get('/wx/redirect','Weixin\WxController@redirect');
 Route::get('/wx/sign','Weixin\WxController@sign');
 
+//exam
 
-
+Route::get('/exam/web','ExamController@web');
