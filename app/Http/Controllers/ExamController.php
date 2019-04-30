@@ -116,8 +116,8 @@ class ExamController extends Controller
         $response=$client->request('POST',$url,[
             'body'=>$str
         ]);
-        $body = $response->getBody();
-        if($response){
+        $body = response->getBody();
+        if($body){
             alert('发送成功');
         }else{
             alert('发送失败');
